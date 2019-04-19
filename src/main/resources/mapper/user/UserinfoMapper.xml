@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nqmysb.scaffold.mapper.user.UserinfoMapper">
+
+ <!--    <select id="mySelectPage" resultType="com.nqmysb.scaffold.entity.user.Userinfo">
+        select * from Userinfo where (email = #{pg.selectStr1} and username = #{pg.selectStr2})
+                or (email = #{ps.yihao} and username = #{ps.erhao})
+    </select> -->
+
+
+ 	<select id="mySelectPage" resultType="com.nqmysb.scaffold.entity.user.Userinfo">
+        select * from Userinfo where  email = #{ps.yihao} or username like concat(concat('%',#{ps.erhao}),'%')
+    </select>
+</mapper>

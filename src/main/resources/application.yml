@@ -1,0 +1,33 @@
+#服务端口
+server:
+  port=8080
+
+# druid配置   
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:oracle:thin:@//192.168.6.121:1521/orclpdb
+    username: LY_IS
+    password: LY_IS
+    druid:
+      initial-size: 2
+      max-active: 30
+      min-idle: 2
+      max-wait: 1234
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 5
+      filter:
+        stat:
+          enabled: true
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      web-stat-filter:
+        enabled: true 
+      stat-view-servlet:
+        enabled: true
+        reset-enable: false
+      aop-patterns: com.nqmysb.scaffold.user.service.*.*,com.nqmysb.scaffold.user.controller.*.*
+      
+      
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*/*Mapper.xml

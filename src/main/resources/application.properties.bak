@@ -1,0 +1,65 @@
+#服务端口
+server.port=8080
+
+# JDBC配置   只有下面三个是必填项（使用内嵌数据库的话这三个也可以不用填，会使用默认配置），其他配置不是必须的
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url=jdbc:oracle:thin:@//192.168.18.150:1521/orclpdb
+spring.datasource.username=LC_TEST
+spring.datasource.password=LC_TEST
+# driver-class-name 非必填可根据url推断
+# spring.datasource.driver-class-name=org.h2.Driver
+
+# 链接池配置  Druid 数据源配置，继承spring.datasource.* 配置，相同则覆盖
+## 初始化连接池的连接数量 大小，最小，最大
+spring.datasource.druid.initial-size=2
+spring.datasource.druid.max-active=30
+spring.datasource.druid.min-idle=2
+spring.datasource.druid.max-wait=1234
+# 是否缓存preparedStatement，也就是PSCache  官方建议MySQL下建议关闭   个人建议如果想用SQL防火墙 建议打开
+spring.datasource.druid.pool-prepared-statements=true
+spring.datasource.druid.max-pool-prepared-statement-per-connection-size=5
+
+
+
+# 配置StatFilter 
+spring.datasource.druid.filter.stat.enabled=true
+
+
+# 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+## stat是统计，wall是SQL防火墙，防SQL注入的，log4j是用来输出统计数据的
+spring.datasource.druid.filters=stat,wall,log4j
+# 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+spring.datasource.druid.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+# ！！！请勿配置timeBetweenLogStatsMillis 会定时输出日志 并导致统计的sql清零
+#spring.datasource.druid.timeBetweenLogStatsMillis=2000
+
+# 监控配置 
+# WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+# 是否启用StatFilter默认值false
+spring.datasource.druid.web-stat-filter.enabled= true 
+#spring.datasource.druid.web-stat-filter.url-pattern=/*
+## 设置不统计哪些URL
+#spring.datasource.druid.web-stat-filter.exclusions=*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*
+## spring.datasource.druid.web-stat-filter.session-stat-enable=
+## spring.datasource.druid.web-stat-filter.session-stat-max-count=
+## spring.datasource.druid.web-stat-filter.principal-session-name=
+## spring.datasource.druid.web-stat-filter.principal-cookie-name=
+## spring.datasource.druid.web-stat-filter.profile-enable=
+
+# StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
+# 是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
+spring.datasource.druid.stat-view-servlet.enabled= true 
+#spring.datasource.druid.stat-view-servlet.url-pattern=/druid/*
+## 禁止手动重置监控数据
+spring.datasource.druid.stat-view-servlet.reset-enable=false
+## 设置监控页面的登录名和密码
+#spring.datasource.druid.stat-view-servlet.login-username=nqmysb
+#spring.datasource.druid.stat-view-servlet.login-password=nqmysb
+# 白名单
+#spring.datasource.druid.stat-view-servlet.allow=
+# 黑名单（优先）
+#spring.datasource.druid.stat-view-servlet.deny=
+
+
+# Spring监控配置，对spring内部接口调用的监控 说明请参考Druid Github Wiki，配置_Druid和Spring关联监控配置
+spring.datasource.druid.aop-patterns=com.nqmysb.scaffold.user.service.*.*
