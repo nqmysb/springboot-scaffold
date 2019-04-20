@@ -17,6 +17,8 @@
 
 [Springboot2.0从零开始搭建脚手架(二)-集成druid连接池和监控功能](https://liaocan.top/article/springboot/springboot2/)
 
+[Springboot2.0从零开始搭建脚手架(三)-集成swagger2+lombok+fastjosn+MP分页](https://liaocan.top/article/springboot/springboot3/)
+
 
 
 
