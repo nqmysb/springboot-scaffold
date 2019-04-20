@@ -6,9 +6,9 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:oracle:thin:@//192.168.6.121:1521/orclpdb
-    username: LY_IS
-    password: LY_IS
+    url: jdbc:oracle:thin:@//192.168.6.6:1521/orclpdb
+    username: nqmysb
+    password: nqmysb
     druid:
       initial-size: 2
       max-active: 30
